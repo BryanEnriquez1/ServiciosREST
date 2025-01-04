@@ -1,0 +1,15 @@
+{
+  "name": "serviceexpress",
+  "version": "1.0.0",
+  "description": "Servicios post, put, delete, all",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "servicios",
+    "rest"
+  ],
+  "author": "Alexander Enriquez",
+  "license": "ISC"
+}
