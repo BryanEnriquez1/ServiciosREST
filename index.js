@@ -14,7 +14,7 @@ app.get('/Datos', (req, res) => {
 });
 
 // GET (all): Obtener los datos de un elemento por ID
-app.get('/Datos', (req, res) => {
+app.get('/Datos/Persona', (req, res) => {
     const idp = parseInt(req.query.idpersona);
     if (!idp) {
         return res.status(400).json({ error: "Debe proporcionar un idpersona" });
@@ -85,7 +85,28 @@ app.delete('/Datos/Eliminar', (req, res) => {
     }
 
     datosP.splice(index, 1);
-    res.status(204).send(); // No Content
+    res.status(204).send();
+});
+
+// Método ALL
+app.all('/Datos/All', (req, res) => {
+    if (req.method === 'GET') {
+        
+        const idp = parseInt(req.query.idpersona);
+        if (idp) {
+            const persona = datosP.find((p) => p.id === idp);
+            if (!persona) {
+                return res.status(404).json({ error: "Persona no encontrada" });
+            }
+            return res.json(persona);
+        } else {
+            return res.json(datosP);
+        }
+    }
+
+    res.status(405).json({
+        message: `Método ${req.method} no está implementado para esta ruta.`,
+    });
 });
 
 // Iniciar el servidor
