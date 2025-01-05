@@ -11,5 +11,8 @@
     "rest"
   ],
   "author": "Alexander Enriquez",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
