@@ -70,7 +70,7 @@ app.put('/Datos/update', (req, res) => {
     res.json(persona);
 });
 
-// DELETE: Eliminar un elemento existente 
+// DELETE: Eliminar un elemento existente //Ormaza 
 app.delete('/Datos/Eliminar', (req, res) => {
     const idp = parseInt(req.query.idpersona);
 
