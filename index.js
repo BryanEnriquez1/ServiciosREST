@@ -48,7 +48,7 @@ app.post('/Datos/Add', (req, res) => {
     res.status(201).json(newPerson);
 });
 
-// PUT: Actualizar un elemento existente
+// PUT: Actualizar un elemento existente// Ormaza
 app.put('/Datos/update', (req, res) => {
     const { idpersona, nombre, apellido, description } = req.body;
     const idp = parseInt(idpersona);
@@ -70,7 +70,7 @@ app.put('/Datos/update', (req, res) => {
     res.json(persona);
 });
 
-// DELETE: Eliminar un elemento existente
+// DELETE: Eliminar un elemento existente 
 app.delete('/Datos/Eliminar', (req, res) => {
     const idp = parseInt(req.query.idpersona);
 
