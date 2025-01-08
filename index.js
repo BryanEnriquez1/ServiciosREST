@@ -18,6 +18,8 @@ app.all('/Datos/All', (req,res)=>{
         } else {
             return res.json(datosP);
         }
+    }else if (req.method === 'POST') {
+        
     }else if (req.method === 'DELETE'){
         const idp = parseInt(req.query.idpersona);
 
