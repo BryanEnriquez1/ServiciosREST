@@ -25,17 +25,32 @@ app.all('/Datos/All', (req,res)=>{
             return res.status(400).json({ error: "Ingrese todos los datos" });
         }
 
-        const newPerson = {
-            id: datosP.length > 0 ? datosP[datosP.length - 1].id + 1 : 1,
+        datosP.push(
+            id=datosP.length > 0 ? datosP[datosP.length - 1].id + 1 : 1,
             nombre,
             apellido,
             description
-        };
-
-        datosP.push(newPerson);
+        );
         res.json(datosP);
     }else if (req.method === 'PUT') {
-        
+        const {idpersona,nombre,apellido,description} = req.body;
+        const idp = parseInt(idpersona);
+
+        if (!idp) {
+            return res.status(400).json({ error: "Debe proporcionar un idpersona" });
+        }
+
+        const persona = datosP.find((p) => p.id === idp);
+
+        if (!persona) {
+            return res.status(404).json({ error: "Persona no existente" });
+        }
+
+        if (nombre) persona.nombre = nombre;
+        if (apellido) persona.apellido = apellido;
+        if (description) persona.description = description;
+
+        res.json(datosP);
     }else if (req.method === 'DELETE'){
         const idp = parseInt(req.query.idpersona);
 
