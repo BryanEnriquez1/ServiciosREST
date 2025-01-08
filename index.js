@@ -19,7 +19,20 @@ app.all('/Datos/All', (req,res)=>{
             return res.json(datosP);
         }
     }else if (req.method === 'DELETE'){
-        
+        const idp = parseInt(req.query.idpersona);
+
+        if (!idp) {
+            return res.status(400).json({ error: "Debe proporcionar un idpersona" });
+        }
+
+        const index = datosP.findIndex((p) => p.id === idp);
+
+        if (index === -1) {
+            return res.status(404).json({ error: "Persona no encontrada" });
+        }
+
+        datosP.splice(index, 1);
+        res.json(datosP);
     }
 
     res.status(405).json({
