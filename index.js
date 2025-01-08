@@ -19,6 +19,22 @@ app.all('/Datos/All', (req,res)=>{
             return res.json(datosP);
         }
     }else if (req.method === 'POST') {
+        const { nombre, apellido, description } = req.body;
+
+        if (!nombre || !apellido || !description) {
+            return res.status(400).json({ error: "Ingrese todos los datos" });
+        }
+
+        const newPerson = {
+            id: datosP.length > 0 ? datosP[datosP.length - 1].id + 1 : 1,
+            nombre,
+            apellido,
+            description
+        };
+
+        datosP.push(newPerson);
+        res.json(datosP);
+    }else if (req.method === 'PUT') {
         
     }else if (req.method === 'DELETE'){
         const idp = parseInt(req.query.idpersona);
