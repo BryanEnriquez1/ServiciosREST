@@ -86,6 +86,27 @@ app.delete('/Datos/Eliminar', (req, res) => {
 
     datosP.splice(index, 1);//RECORRER JSON
     res.status(204).send(); // No Content
+}); 
+
+// Método ALL
+app.all('/Datos/All', (req, res) => {
+    if (req.method === 'GET') {
+        
+        const idp = parseInt(req.query.idpersona);
+        if (idp) {
+            const persona = datosP.find((p) => p.id === idp);
+            if (!persona) {
+                return res.status(404).json({ error: "Persona no encontrada" });
+            }
+            return res.json(persona);
+        } else {
+            return res.json(datosP);
+        }
+    }
+
+    res.status(405).json({
+    message: 'Método ${req.method} no está implementado para esta ruta.'
+    });
 });
 
 // Iniciar el servidor
