@@ -50,14 +50,14 @@ app.post('/Datos/Add', (req, res) => {
 
 // PUT: Actualizar un elemento existente// Ormaza
 app.put('/Datos/update', (req, res) => {
-    const { idpersona, nombre, apellido, description } = req.body;
+    const { idpersona, nombre, apellido, description } = req.body;//extrae los valores del objeto
     const idp = parseInt(idpersona);
 
     if (!idp) {
         return res.status(400).json({ error: "Debe proporcionar un idpersona" });
     }
 
-    const persona = datosP.find((p) => p.id === idp);
+    const persona = datosP.find((p) => p.id === idp); //BUSCA EN EL ARREGLO
 
     if (!persona) {
         return res.status(404).json({ error: "Persona no existente" });
@@ -84,7 +84,7 @@ app.delete('/Datos/Eliminar', (req, res) => {
         return res.status(404).json({ error: "Persona no encontrada" });
     }
 
-    datosP.splice(index, 1);
+    datosP.splice(index, 1);//RECORRER JSON
     res.status(204).send(); // No Content
 });
 
